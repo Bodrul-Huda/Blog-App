@@ -1,6 +1,7 @@
 import { createClient } from "contentful";
 import Image from "next/image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { redirects } from "next.config";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -28,6 +29,15 @@ export const getStaticProps = async (ctx) => {
     content_type: "blogPost",
     "fields.slug": slug,
   });
+
+  if (!res.items.length) {
+    return {
+      redirects: {
+        destination: "/", // Matched parameters can be used in the destination
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {

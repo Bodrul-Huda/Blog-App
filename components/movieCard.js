@@ -2,8 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const MovieCard = ({ movie }) => {
-  const { movieName, image, director, rating, slug, releaseDate } =
-    movie.fields;
+  const { movieName, image, director, rating, slug } = movie.fields;
 
   return (
     <>

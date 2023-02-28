@@ -3,7 +3,6 @@ import { createClient } from "contentful";
 import MovieCard from "../../components/movieCard";
 
 export default function Home({ data }) {
-  console.log(data);
   return (
     <>
       <Layout>
