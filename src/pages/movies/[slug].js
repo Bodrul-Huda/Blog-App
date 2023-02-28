@@ -17,7 +17,7 @@ export const getStaticPaths = async () => {
   });
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };
 
@@ -33,12 +33,16 @@ export const getStaticProps = async (ctx) => {
     props: {
       data: res.items[0],
     },
+    revalidate: 1,
   };
 };
 
 const Slug = ({ data }) => {
   const { movieName, image, director, rating, slug, releaseDate, details } =
     data.fields;
+
+  if (!data) return <h2 className="text-xl">Loding....</h2>;
+
   return (
     <>
       <div className="container mx-auto py-10 flex justify-center">
